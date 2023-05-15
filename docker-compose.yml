@@ -1,0 +1,42 @@
+version: '3'
+
+services:
+  rabbitmq:
+    image: rabbitmq:3-management
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "ping"]
+      interval: 5s
+      timeout: 10s
+      retries: 5
+
+  
+  web:
+    build: ./image_predict
+    ports:
+      - "8000:8000"
+    
+    depends_on:
+      - rabbitmq
+      - wait-for-rabbitmq
+    
+  csv:
+    build: ./data_processor
+    volumes:
+      - ./csv_files:/app/csv_files
+    depends_on:
+      - rabbitmq
+      - wait-for-rabbitmq
+  wait-for-rabbitmq:
+    image: busybox
+    depends_on:
+      - rabbitmq
+    command: >
+      sh -c 'until nc -z rabbitmq 5672; do sleep 1; done;'
+
+
+  
+    # volumes:
+    #   - ./rabbitmq_data:/var/lib/rabbitmq
