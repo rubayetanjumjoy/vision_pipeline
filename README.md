@@ -33,7 +33,7 @@ Make sure you have the following software installed on your system:
 1. Clone the repository:
 
   
-         git clone <repository_url>
+         git clone https://github.com/rubayetanjumjoy/vision_pipeline.git
 1. Enter into the project:
 
    
@@ -90,7 +90,7 @@ To stop the service and remove the containers, run the following command:
 This will stop the containers and remove the network and volumes associated with the service.
 
 ## Running the Test Script
-If you want to run the test script to send a 100 randomly generated requests to the Producer API, follow these steps:
+If you want to run the test script to send a 1000 randomly generated requests to the Producer API, follow these steps:
 
 Make sure the containers are running (docker-compose up ).
 
