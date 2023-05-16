@@ -54,27 +54,29 @@ Image frame: The image frame should be provided as a base64-encoded string. Ensu
 If you do not provide the timestamp in the correct format or if the image frame is not base64-encoded, you will encounter a content type error with receive a 404 response from the API.
 Example Request:
          
-            curl -X POST -H "Content-Type: application/json" -d '{
-            "device_id": "101230",
-            "client_id": "11232",
-            "created_at": "2023-02-07 14:56:49.386042", 
-            "data": {
-                  "license_id": "012391",
-                  "preds": [
-                     {
-                        "image_frame": "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=",
-                        "prob": 0.24,
-                        "tags": []
-                     },
-                        {
-                        "image_frame": "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=",
-                        "prob": 5,
-                        "tags": []
-                     }
+            curl --location 'http://127.0.0.1:8000/api/predictions/' \
+          --header 'Content-Type: application/json' \
+          --data '{
+                    "device_id": "12211142",
+                    "client_id": "11232",
+                    "created_at": "2023-02-07 14:56:49.386042", 
+                    "data": {
+                              "license_id": "012391",
+                              "preds": [
+                                        {
+                                                  "image_frame": "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=",
+                                                  "prob": 0.24,
+                                                  "tags": []
+                                        },
+                      {
+                                                  "image_frame": "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=",
+                                                  "prob": 5,
+                                                  "tags": []
+                                        }
 
-                     ] 
-                  }
-               }' http://localhost:8000/api/predections/
+                              ] 
+                    }
+          }'
 
 
 ## Checking the Output CSV File
